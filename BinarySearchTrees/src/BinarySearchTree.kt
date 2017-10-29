@@ -4,20 +4,41 @@ class BinarySearchTree {
         println("Searching for: $searchInt in [${printListContents(list)}]")
         println()
 
-        if (list.size == 0) {
+        if (list.isEmpty()) {
             println("Didn't find $searchInt")
             return -1
         }
 
+        if (this.searchIntIsFound(searchInt, list)) {
+            return 0
+        }
+
+        return this.getSearchIntIndexRecursively(searchInt, list)
+    }
+
+    private fun printListContents(list: List<Int>):String {
+        val printString = StringBuffer()
+        list.indices
+                .forEach {
+                    printString.append(list[it])
+                    printString.append(" ")
+                }
+        return printString.toString()
+    }
+
+    private fun searchIntIsFound(searchInt: Int, list: List<Int>):Boolean {
         if (list.size == 1) {
-            if (list.get(0) == searchInt) {
+            if (list[0] == searchInt) {
                 println("Found $searchInt!")
-                return 0
+                return true
             } else {
                 println("Didn't find $searchInt")
             }
         }
+        return false
+    }
 
+    private fun getSearchIntIndexRecursively(searchInt: Int, list: List<Int>):Int {
         if (list.size > 1) {
             val listMidPoint = list.size / 2
             if (searchInt < list[listMidPoint]) {
@@ -29,19 +50,6 @@ class BinarySearchTree {
                 }
             }
         }
-
         return -1
-    }
-
-
-
-    fun printListContents(list: List<Int>):String {
-        val printString = StringBuffer();
-        list.indices
-                .forEach {
-                    printString.append(list[it])
-                    printString.append(" ")
-                }
-        return printString.toString()
     }
 }
