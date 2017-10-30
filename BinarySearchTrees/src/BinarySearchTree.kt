@@ -9,7 +9,7 @@ class BinarySearchTree {
             return -1
         }
 
-        if (this.searchIntIsFound(searchInt, list)) {
+        if (this.isSearchIntOnlyItemInList(searchInt, list)) {
             return 0
         }
 
@@ -26,7 +26,7 @@ class BinarySearchTree {
         return printString.toString()
     }
 
-    private fun searchIntIsFound(searchInt: Int, list: List<Int>):Boolean {
+    private fun isSearchIntOnlyItemInList(searchInt: Int, list: List<Int>):Boolean {
         if (list.size == 1) {
             if (list[0] == searchInt) {
                 println("Found $searchInt!")
